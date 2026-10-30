@@ -104,6 +104,17 @@ function readTimeoutMs(...values) {
 
 /** @type {import('next').NextConfig} */
 const nextConfig = {
+  webpack: (config, { isServer }) => {
+    if (!isServer) {
+      config.resolve.fallback = {
+        ...config.resolve.fallback,
+        fs: false,
+        child_process: false,
+        module: false,
+      };
+    }
+    return config;
+  },
   // Opt-in subpath deployment behind a reverse proxy (e.g. nginx/Caddy serving
   // OmniRoute under https://host/omniroute/). Empty by default so root-path
   // deployments are unaffected. Next.js strips this prefix from `pathname`
