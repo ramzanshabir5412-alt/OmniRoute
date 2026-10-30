@@ -181,6 +181,7 @@ const nextConfig = {
     ],
   },
   serverExternalPackages: [
+    "ioredis",
     "sharp",
     "detect-libc",
     "pino",
@@ -234,6 +235,19 @@ const nextConfig = {
         fs: false,
         child_process: false,
         module: false,
+        net: false,
+        tls: false,
+        dns: false,
+        "stream/promises": false,
+        path: false,
+        os: false,
+        crypto: false,
+        http: false,
+        https: false,
+        stream: false,
+        buffer: false,
+        util: false,
+        process: false,
       };
     }
     if (!dev && process.env.OMNIROUTE_WEBPACK_BUILD_CACHE !== "1") {
